@@ -6,6 +6,7 @@ categories: [Computing, Computer Architecture] # only level-2 supported
 tags: [computer-architecture] # TAG names should always be lowercase
 toc: true # table of contains, default to true
 math: true
+img_path: ./
 typora-copy-images-to: ../../../_media/imgs/${filename}
 ---
 

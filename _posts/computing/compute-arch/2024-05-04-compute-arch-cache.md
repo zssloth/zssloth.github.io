@@ -189,7 +189,6 @@ cache性能使用平均访存时间衡量：
 - 计算机体系结构-量化研究方法, 6th
 
 - https://en.wikipedia.org/wiki/CPU_cache
-  -  [CPU cache_wikipedia.pdf](compute-arch-cache.assets\CPU cache_wikipedia.pdf) 
 
 - https://www.zhihu.com/column/cpu-cache
 

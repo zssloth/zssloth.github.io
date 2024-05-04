@@ -1,6 +1,10 @@
 Jeklly + Github Pages for personal blog, use template from https://github.com/cotes2020/jekyll-theme-chirpy/
 - setup reference: https://chirpy.cotes.page/posts/getting-started/
-- local view before launch: `bundle exec jekyll s`, 
+- local view before launch: `bundle exec jekyll s`
+- corporate with Typora
+  - image path setting: https://support.typora.io/Images/
+  - https://support.typora.io/YAML/
+
 
 
 # Chirpy Starter
