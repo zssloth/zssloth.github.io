@@ -1,0 +1,9 @@
+---
+title: template
+author: zssloth
+date: 2024-05-06 17:04:00 +0800
+categories: [目录] # only level-2 supported
+tags: [tag1, tag2] # TAG names should always be lowercase
+toc: true # table of contains, default to true
+math: true
+---
