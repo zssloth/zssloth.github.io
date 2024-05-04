@@ -14,9 +14,9 @@ timezone: Asia/Shanghai
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Zssloth # the main title
+title: zssloth # the main title
 
-tagline: Zssloth's Blog # it will display as the sub-title
+tagline: zssloth's Blog # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Blogs about efficient ML/System/Arch.
