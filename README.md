@@ -1,3 +1,5 @@
+> Jeklly + Github Pages for personal blog, use template from https://github.com/cotes2020/jekyll-theme-chirpy/
+
 # Chirpy Starter
 
 [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
