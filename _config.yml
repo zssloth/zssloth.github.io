@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 
 title: zssloth # the main title
 
-tagline: zssloth's Blog # it will display as the sub-title
+tagline: Efficient ML/System/Arch. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Blogs about efficient ML/System/Arch.

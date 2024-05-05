@@ -6,8 +6,8 @@ categories: [Computing, Computer Architecture] # only level-2 supported
 tags: [computer-architecture] # TAG names should always be lowercase
 toc: true # table of contains, default to true
 math: true
-img_path: ./
-typora-copy-images-to: ../../../_media/imgs/${filename}
+# img_path: https://github.com/zssloth/zssloth.github.io/tree/main/_posts/computing/compute-arch
+# typora-copy-images-to: ../../../_media/imgs/${filename}
 ---
 
 ### 定量分析基础
@@ -53,11 +53,11 @@ $$
 
 Benchmarks指一组用于测试的程序用来系统比较计算机系统的性能，可以为: Kernels (e.g. matrix multiply)、Toy programs (e.g. sorting)、Synthetic benchmarks (e.g. Dhrystone)、Benchmark suites (e.g. SPEC06fp, TPC-C)。经典的desktop benchmarks为 [SPEC](https://www.spec.org/)，采用一组应用综合性能算几何平均作为性能的综合评价：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211025222321778-1714838107933-2-1714838217523-2.png" alt="image-20211025222321778" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211025222321778-1714838107933-2-1714838217523-2.png" alt="image-20211025222321778" align=left style="zoom:40%;" />
 
 基于几何平均的性质，性能评估结果与参考机器的选择无关：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211025222415523.png" alt="image-20211025222415523" align=left style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211025222415523.png" alt="image-20211025222415523" align=left style="zoom:50%;" />
 
 #### 功耗
 
@@ -86,13 +86,13 @@ Benchmarks指一组用于测试的程序用来系统比较计算机系统的性�
 
 分为SISD, SIMD, MISD, MIMO四种类型。其中MISD基本没有实现，有人宣称FPGA可以实现类MISD，不过也是个说辞而已。
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/1-16422561074551.jpg" alt="1" align=left style="zoom:60%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlog1-16422561074551.jpg" alt="1" align=left style="zoom:60%;" />
 
 
 
 技术的进步与应用、软件兼容性之间的关系：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028194301489.png" alt="image-20211028194301489" align=left style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028194301489.png" alt="image-20211028194301489" align=left style="zoom:50%;" />
 
 ### ISA
 
@@ -100,21 +100,21 @@ Benchmarks指一组用于测试的程序用来系统比较计算机系统的性�
 
 Instruction Set Architecture (ISA)是软件和硬件之间的抽象接口：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028202600437.png" alt="image-20211028202600437" align=left style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028202600437.png" alt="image-20211028202600437" align=left style="zoom:50%;" />
 
 ISA设计时会考虑特定的微体系结构(uArchitecture)实现方式，但理论上一个ISA可以由任何uArchitecture实现：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028202741264.png" alt="image-20211028202741264" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028202741264.png" alt="image-20211028202741264" align=left style="zoom:40%;" />
 
 ##### 分类
 
 早期分为几种，但现在基本为通用寄存器型 (General Purpose Register)，数据从memory load到register后再执行相关计算。
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028210330379.png" alt="image-20211028210330379"  align=left style="zoom:60%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028210330379.png" alt="image-20211028210330379"  align=left style="zoom:60%;" />
 
 register-register的优势和不足：
 
-![image-20211028211531458](./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028211531458.png)
+![image-20211028211531458](https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028211531458.png)
 
 比较明显的劣势是：1) 单个指令的信息密度低，完成相同操作所需指令的数目多；2) 所需寄存器资源较多
 
@@ -122,13 +122,13 @@ register-register的优势和不足：
 
 有很多种，总结如下：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028210532770.png" alt="image-20211028210532770" align=left style="zoom:60%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028210532770.png" alt="image-20211028210532770" align=left style="zoom:60%;" />
 
 因为存储器一般按照字节编址，而一个数据可能由多个字节表示，涉及到数据再存储时候的存储顺序和字节对齐，两个问题：
 
 1. 尾端问题：大端 vs. 小端，小端将数据低字节放在低地址，大端反之
 
-   <img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028210810628.png" alt="image-20211028210810628" align=left  style="zoom:60%;" />
+   <img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028210810628.png" alt="image-20211028210810628" align=left  style="zoom:60%;" />
 
 2. 对齐问题：要求数据访问按照一定字节对齐
 
@@ -143,7 +143,7 @@ register-register的优势和不足：
 
 一般需要支持的操作类型：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028211851792.png" alt="image-20211028211851792" align=left style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028211851792.png" alt="image-20211028211851792" align=left style="zoom:80%;" />
 
 一般计算机都支持前三类所有的操作；不同计算机系统 对系统支持程度不同，但都支持基本的系统功能；对最后四类操作的支持程度差别也很大，有些机器不支持，有些机器还在此基础上做一些扩展，这些指令有时作为可选的指令。
 
@@ -184,7 +184,7 @@ RISC计算特点的一般描述(可以看出基本为了优化CPI而设计)：
 
 一些典型的ISA：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028213247831.png" alt="image-20211028213247831" align=left style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028213247831.png" alt="image-20211028213247831" align=left style="zoom:50%;" />
 
 ##### 编译器的重要性
 
@@ -208,11 +208,11 @@ RISC计算特点的一般描述(可以看出基本为了优化CPI而设计)：
 
 设计理念：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028214024223.png" alt="image-20211028214024223" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028214024223.png" alt="image-20211028214024223" align=left style="zoom:40%;" />
 
 技术目标：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028214105974.png" alt="image-20211028214105974" align=left style="zoom:35%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028214105974.png" alt="image-20211028214105974" align=left style="zoom:35%;" />
 
 参考：https://riscv.org/
 
@@ -220,10 +220,10 @@ RISC计算特点的一般描述(可以看出基本为了优化CPI而设计)：
 
 micro programming是80年代以前较为流行的一种处理器实现方案，处理器设计可分为datapath和control两个部分，早期设计中控制逻辑的实现较为复杂，后面提出了micro programming的概念设计处理器的控制逻辑：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028215402319.png" alt="image-20211028215402319" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028215402319.png" alt="image-20211028215402319" align=left style="zoom:40%;" />
 
 早期ROM比RAM速度快很多，普遍将微指令保存在ROM中，复杂指令/指令修改不需要修改数据通路，成为主流实现方案。
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-ISA/image-20211028215735354.png" alt="image-20211028215735354" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028215735354.png" alt="image-20211028215735354" align=left style="zoom:40%;" />
 
 随着技术的进步，SRAM在速度和性价比上超过了ROM，且RAM支持修改，该实现方案也被逐渐替代，不过在现代处理器中也有相关的功能用于，e.g.，芯片出厂后的bug fixing。

@@ -5,7 +5,13 @@ Jeklly + Github Pages for personal blog, use template from https://github.com/co
   - image path setting: https://support.typora.io/Images/
   - https://support.typora.io/YAML/
 
+Setup Reference:
+- https://wizard23333.github.io/posts/build-your-blog-2/
+  - https://github.com/Wizard23333/Wizard23333.github.io/blob/gh-pages/_posts/blog_build/2023-02-24-build-your-blog-2.md
 
+Use Relative Link to another .md file:
+- https://jekyllrb.com/docs/liquid/tags/
+- https://mademistakes.com/mastering-jekyll/how-to-link/
 
 # Chirpy Starter
 

@@ -1,4 +1,5 @@
 #  The contact options.
+#  search font: https://fontawesome.com/
 
 - type: github
   icon: "fab fa-github"
@@ -6,9 +7,13 @@
 # - type: twitter
 #   icon: "fa-brands fa-x-twitter"
 
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
+# - type: email
+#   icon: "fas fa-envelope"
+#   noblank: true # open link in current tab
+
+- type: zhihu
+  icon: "fab fa-zhihu"
+  url: 'https://www.zhihu.com/people/zhi-xing-85-19'
 
 - type: rss
   icon: "fas fa-rss"

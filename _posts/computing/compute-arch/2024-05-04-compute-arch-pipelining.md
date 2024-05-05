@@ -6,8 +6,8 @@ categories: [Computing, Computer Architecture] # only level-2 supported
 tags: [computer-architecture] # TAG names should always be lowercase
 toc: true # table of contains, default to true
 math: true
-img_path: ./
-typora-copy-images-to: ../../../_media/imgs/${filename}
+# img_path: ./
+# typora-copy-images-to: ../../../_media/imgs/${filename}
 ---
 
 ### 流水线
@@ -16,7 +16,7 @@ typora-copy-images-to: ../../../_media/imgs/${filename}
 
 流水线通过使用不同的资源让多个任务重叠（并发/并行）执行提高整个系统的吞吐率，但不能缩短单个任务的执行时间，其潜在的加速比＝流水线的级数。经典的5-stage RISC流水线如下，每段延迟为一个cycle：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028195954245-1714838080494-5.png" alt="image-20211028195954245" style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028195954245-1714838080494-5.png" alt="image-20211028195954245" style="zoom:50%;" />
 
 - IF: 取值阶段
   - 选择地址：下一条指令地址、转移地址
@@ -47,7 +47,7 @@ typora-copy-images-to: ../../../_media/imgs/${filename}
 
 某条指令依赖先前指令产生的结果(数据)值，包括：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028221547962-1714838080494-6.png" alt="image-20211028221547962" align=left style="zoom:70%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028221547962-1714838080494-6.png" alt="image-20211028221547962" align=left style="zoom:70%;" />
 
 三种常见的消减机制：
 
@@ -73,7 +73,7 @@ typora-copy-images-to: ../../../_media/imgs/${filename}
 
 – 实际吞吐率：假设k段，完成n个任务，单位时间所实际完成的任务数。
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028222957244-1714838080495-7.png" alt="image-20211028222957244" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028222957244-1714838080495-7.png" alt="image-20211028222957244" align=left style="zoom:40%;" />
 
 – 加速比: k段流水线的速度与等功能的非流水线的速度之比，最大为流水线段数k
 – 效率：流水线的设备利用率，当流水线中各段时间相等时利用率为1.0
@@ -82,7 +82,7 @@ typora-copy-images-to: ../../../_media/imgs/${filename}
 
 浮点操作在1～2个cycles完成是不现实的，一般要花费较长时间，当EX阶段涉及多个FP功能部件的计算时，流水线竞争问题加剧
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028230050720-1714838080495-8.png" alt="image-20211028230050720" align=left style="zoom:60%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028230050720-1714838080495-8.png" alt="image-20211028230050720" align=left style="zoom:60%;" />
 
 - 问题：结构相关（增多）；数据相关、控制相关引起的stall增多；有新的冲突源产生；定向路径增多；异常处理复杂
 
@@ -90,7 +90,7 @@ typora-copy-images-to: ../../../_media/imgs/${filename}
 
 separate control and memory address operations from data computations. The control and address operations do not depend on the data computations, so can be computed early relative to the data computations, which can be delayed until later
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028230532982.png" alt="image-20211028230532982" align=left style="zoom:40%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028230532982.png" alt="image-20211028230532982" align=left style="zoom:40%;" />
 
 可通过将"access"和"execute"的pipeline分发到不同的queue中缓解多分支流线线中某一分支的long memory latency问题
 
@@ -98,7 +98,7 @@ separate control and memory address operations from data computations. The contr
 
 Exception(异常), Trap(陷阱)和Interrupt(中断)之间的联系；可以按照同步vs.异步、内部vs.外部、精确异常vs.非精确异常进行分类。
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211102231330369.png" alt="image-20211102231330369" align=left style="zoom:65%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211102231330369.png" alt="image-20211102231330369" align=left style="zoom:65%;" />
 
 处理器响应中断的方式：
 
@@ -108,7 +108,7 @@ Exception(异常), Trap(陷阱)和Interrupt(中断)之间的联系；可以按�
 
 如何处理不同流水线段多个并发异常+外部异步中断：有个commit阶段，将异常标志保留在这个阶段再提交(判断)；该阶段并入异步中断请求；针对某条指令，早期流水阶段的异常一般产生会导致后续流水的异常，因此直接用早期异常覆盖后续发生的异常，而后响应异常
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-pipelining/image-20211028224828249.png" alt="image-20211028224828249" align=left style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211028224828249.png" alt="image-20211028224828249" align=left style="zoom:50%;" />
 
 处理器响应异常的方式：
 

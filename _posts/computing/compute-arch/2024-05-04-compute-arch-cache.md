@@ -6,8 +6,8 @@ categories: [Computing, Computer Architecture] # only level-2 supported
 tags: [computer-architecture] # TAG names should always be lowercase
 toc: true # table of contains, default to true
 math: true
-img_path: ./
-typora-copy-images-to: ../../../_media/imgs/${filename}
+# img_path: ./
+# typora-copy-images-to: ../../../_media/imgs/${filename}
 ---
 
 ### Cache, Memory Hierarchy
@@ -21,20 +21,20 @@ A：processor-memory performance gap，DRAM带宽的增长速度慢于处理器�
 - CPU 60%/year, DRAM 9%/year
 - multi-core processors需要的带宽需求更大
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101210556029-1714838183181-2.png" alt="image-20211101210556029" align=left style="zoom:60%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101210556029-1714838183181-2.png" alt="image-20211101210556029" align=left style="zoom:60%;" />
 
 **Q：memory的一般组织形式与工作原理**
 
 - 典型的memory hierarchy
   - CPU与DRAM间增加cache memory (SRAM)，提高访存速度的同时，降低存储系统成本
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101210954653.png" alt="image-20211101210954653" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101210954653.png" alt="image-20211101210954653" style="zoom:80%;" />
 
 - 工作原理：temporal locality + spatial locality
   - 最近被访问到的可能会被连续访问
   - 被访问到的元素地址周围的数据很可能会在后续被访问
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101211514740.png" alt="image-20211101211514740"  style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101211514740.png" alt="image-20211101211514740"  style="zoom:50%;" />
 
 #### cache基础知识
 
@@ -63,11 +63,11 @@ cache miss出现的原因包括(3C's)：
 
 现代计算机一般用2/4-way组相连或者直接映像，下图给出一个2-way组相连的例子。
 
-![img](./../../../_media/imgs/2024-05-04-compute-arch-cache/3-s2.0-B978012800056400008X-f08-09-9780128000564.jpg)
+![img](https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlog3-s2.0-B978012800056400008X-f08-09-9780128000564.jpg)
 
 更形象的例子如下，参考[知乎博客](https://zhuanlan.zhihu.com/p/102293437)，假设64 Bytes cache size，cache line size是8 Bytes，2-way组相连，每路包含4行cache line。cache line大小是8 Bytes，所以我们可以利用地址低3 bits（如上图地址蓝色部分）用来寻址8 bytes中某一字节，我们称这部分bit组合为offset。同理，4行cache line，为了覆盖所有行。我们需要2  bits（如上图地址黄色部分）查找某一行，这部分地址部分称之为index。如果两个不同的地址，其地址的bit3-bit5如果完全一样的话，那么这两个地址经过硬件散列之后都会找到同一个cache line。所以，当我们找到cache line之后，只代表我们访问的地址对应的数据可能存在这个cache  line中，但是也有可能是其他地址对应的数据。所以，我们又引入tag array区域，每个tag中保存的是整个地址位宽去除index和offset使用的bit剩余部分（如上图地址绿色部分），以及标识当前cacheline是否包含有效数据的valid位，tag、index和offset三者组合就可以唯一确定一个地址了。对于2-way组相连，每一个cache line对应2个tag，当我们根据地址中index位找到cache line后，取出当前cache line对应的所有tag，并和地址中的tag进行比较，如果存在一个tag相等，即为cache hit。
 
-![img](./../../../_media/imgs/2024-05-04-compute-arch-cache/v2-4653656ec3d4d5942bae805df6723690_720w.jpg)
+![img](https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogv2-4653656ec3d4d5942bae805df6723690_720w.jpg)
 
 引申：cache控制器根据地址查找判断是否命中，这里的地址究竟是虚拟地址(virtual address，VA)还是物理地址(physical address，PA)？CPU发出对某个地址的数据访问，这个地址其实是虚拟地址，虚拟地址经过MMU转换成物理地址，最终从这个物理地址读取数据。因此cache的硬件设计既可以采用虚拟地址也可以采用物理地址甚至是取两者地址部分组合作为查找cache的依据。
 
@@ -139,24 +139,24 @@ cache性能使用平均访存时间衡量：
 
 **cache高级优化方法：**
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101231103347.png" alt="image-20211101231103347" align=left style="zoom:90%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101231103347.png" alt="image-20211101231103347" align=left style="zoom:90%;" />
 
 几个方法的补充说明：
 
 - multibanked caches: Organize cache as independent banks to support simultaneous access
   - Interleave banks according to block address
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101231256694.png" alt="image-20211101231256694" style="zoom:50%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101231256694.png" alt="image-20211101231256694" style="zoom:50%;" />
 
 - prefetching: 可以预取指令或数据
 
 不同优化方法总结：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/image-20211101231549111.png" alt="image-20211101231549111" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlogimage-20211101231549111.png" alt="image-20211101231549111" style="zoom:80%;" />
 
 一个更为实际的memory herarchy例子：
 
-<img src="./../../../_media/imgs/2024-05-04-compute-arch-cache/3-s2.0-B9780123797513500035-f01-09-9780123797513.jpg" alt="img" style="zoom:100%;" />
+<img src="https://cdn.jsdelivr.net/gh/zssloth/image-resource@main/githubBlog3-s2.0-B9780123797513500035-f01-09-9780123797513.jpg" alt="img" style="zoom:100%;" />
 
 - 指令-数据分离缓存：流水线会在instruction fetch和memory access两个阶段上访问内存，如不增加缓存端口将会造成结构性冒险（Structural hazard）。一种办法是使用两片一级缓存，分别服务于指令抓取和内存访问两个阶段。这样，前一个一级缓存称为指令缓存，后一个则为数据缓存
 - Victim Cache: 在直接映射或者较小的k-way全相连旁边额外加的一小块全相联cache。当一个数据块被逐出缓存时，并不直接丢弃，而是暂先进入Victim Cache缓存，出发点是根据统计刚刚被替换的数据常被访问
