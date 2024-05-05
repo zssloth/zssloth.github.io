@@ -2,7 +2,7 @@
 title: Masked Autoencoders Are Scalable Vision Learners
 author: zssloth
 date: 2024-05-05 15:00:00 +0800
-categories: [Paper Reading] # only level-2 supported
+categories: [Research Reading] # only level-2 supported
 tags: [论文笔记, computer-vision] # TAG names should always be lowercase
 toc: true # table of contains, default to true
 math: true
